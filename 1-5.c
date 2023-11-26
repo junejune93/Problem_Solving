@@ -40,13 +40,35 @@ int BinarySearch(int array[], int size, int value){
     return -1;
 }
 
+// 1-5-4
+void reverseArray(int *a, int n){
+    printf("reverseArray : ");
+    for (int i = 0, j = n-1; i<j; i++, j--){
+        a[i] ^= a[j] ^= a[i] ^= a[j];
+    }
+    for (int i = 0; i < n; i++){
+        printf(" %d,", a[i]);
+    }
+    printf("\n");
+    
+}
+
+void reverseArray2(int *a, int n, int k){
+    printf("reverseArray2 start\n");
+    reverseArray(a, k);
+    reverseArray(&a[k], n - k);
+    reverseArray(a, n);
+    printf("end\n");
+}
+
 int main(){
-    int nArray[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    // int nArray2[10] = {1, 4, 6, 7, 2, 8, 6, 3, 5};
+    int nArray[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int nArray2[10] = {1, 4, 6, 7, 2, 8, 6, 3, 5, 10};
+    int nArray3[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     printf("SumArray : %d\n",SumArray(nArray, sizeof(nArray)/sizeof(nArray[0])));
     findValue(nArray, sizeof(nArray)/sizeof(nArray[0]), 9);
     printf("BinarySearch : %d\n", BinarySearch(nArray, sizeof(nArray)/sizeof(nArray[0]), 1));
-
+    reverseArray2(nArray3, sizeof(nArray3)/sizeof(nArray3[0]), 2);
     return 0;
 }
